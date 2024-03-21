@@ -1,0 +1,20 @@
+# This file uses centimeters as units for non-parametric coordinates.
+
+mtllib Inside_Bend_Floor2_LP.mtl
+g default
+v 0.000000 0.000000 0.000000
+v 1.242793 0.023565 -1.771691
+v 0.000000 0.000000 -3.000000
+v 3.000000 0.000000 -3.000000
+vt 0.000000 0.000000
+vt 1.000000 0.000000
+vt 0.000000 1.000000
+vt 1.000000 1.000000
+vn -0.009535 0.999909 -0.009535
+vn -0.009535 0.999909 -0.009535
+vn -0.009535 0.999909 -0.009535
+vn -0.009535 0.999909 -0.009535
+s off
+g Inside_Bend_LP1
+usemtl initialShadingGroup
+f 1/1/1 2/2/2 4/4/3 3/3/4

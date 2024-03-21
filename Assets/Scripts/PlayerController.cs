@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Palmmedia.ReportGenerator.Core.Reporting.Builders;
 using UnityEditor;
 
 public class PlayerController : MonoBehaviour
