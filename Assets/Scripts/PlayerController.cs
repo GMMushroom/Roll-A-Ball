@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 1f;
     private Rigidbody rb;
-    private int pickUpCount = 0;
+    public static float currentPickUpCount = 0f;
+    public static float maxPickUpCount = 0f;
     private Timer timer;
     private bool gameOver = false;
 
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         //Get the number of pickups in our scene
-        pickUpCount = GameObject.FindGameObjectsWithTag("Pick Up").Length;
+        maxPickUpCount = GameObject.FindGameObjectsWithTag("Pick Up").Length;
         //Set Pick Up Count
         CheckPickUps();
         //Get the timer object and start the timer
@@ -65,7 +66,7 @@ public class PlayerController : MonoBehaviour
             //Destroy other objects on collision
             Destroy(other.gameObject);
             //Decrement the Pickup count
-            pickUpCount--;
+            currentPickUpCount++;
             //Run the CheckPickUps() function
             CheckPickUps();
         }
@@ -73,8 +74,8 @@ public class PlayerController : MonoBehaviour
 
     void CheckPickUps()
     {
-        pickUpText.text = "Pick Ups Left: " + pickUpCount;
-        if (pickUpCount == 0)
+        pickUpText.text = "Fragments Collected: " + currentPickUpCount + "/" + maxPickUpCount;
+        if (currentPickUpCount == maxPickUpCount)
         {
             winGame();
         }
@@ -92,8 +93,8 @@ public class PlayerController : MonoBehaviour
         //Change the font size and color of text when all Pick-Ups = 0
         pickUpText.color = Color.green;
         timerText.color = Color.yellow;
-        pickUpText.fontSize = 120;
-        timerText.fontSize = 120;
+        /*pickUpText.fontSize = 120;
+        timerText.fontSize = 120;*/
 
         //Stop the timer
         timer.StopTimer();
