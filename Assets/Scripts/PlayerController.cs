@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Reset Pickup count
+        currentPickUpCount = 0f;
+        maxPickUpCount = 1f;
+
         //Turn on our In-game Panel & turn off Win Panel
         inGamePanel.SetActive(true);
         winPanel.SetActive(false);
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             //Destroy other objects on collision
             Destroy(other.gameObject);
-            //Decrement the Pickup count
+            //Count the Pickup count
             currentPickUpCount++;
             //Run the CheckPickUps() function
             CheckPickUps();
