@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Padilla_L_AGA206_A1
   productName: Roll-A-Ball
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}

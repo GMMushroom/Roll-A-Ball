@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text winTimeText;
     public GameObject winPanel;
+    public GameObject displayTimer;
     public GameObject inGamePanel;
 
 
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
         //Turn on our In-game Panel & turn off Win Panel
         inGamePanel.SetActive(true);
+        displayTimer.SetActive(true);
         winPanel.SetActive(false);
 
         rb = GetComponent<Rigidbody>();
@@ -91,7 +93,8 @@ public class PlayerController : MonoBehaviour
         gameOver = true;
 
         //Turn off our In-game Panel & turn Win Panel on
-        inGamePanel.SetActive(false);
+        /*inGamePanel.SetActive(false);*/
+        displayTimer.SetActive(false);
         winPanel.SetActive(true);
 
         //Change the font size and color of text when all Pick-Ups = 0
