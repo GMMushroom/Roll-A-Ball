@@ -4888,6 +4888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ProgressBar: {fileID: 1167025387}
+  filAmtSpeed: 0.001
 --- !u!114 &1167025387
 MonoBehaviour:
   m_ObjectHideFlags: 0

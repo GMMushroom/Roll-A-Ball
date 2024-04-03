@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProgressBarScript : MonoBehaviour
 {
     public Image ProgressBar;
+    public float filAmtSpeed = 0.01f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class ProgressBarScript : MonoBehaviour
     {
         if (ProgressBar.fillAmount <= PlayerController.currentPickUpCount/PlayerController.maxPickUpCount)
         {
-            ProgressBar.fillAmount += 0.01f;
+            ProgressBar.fillAmount += filAmtSpeed;
         }
     }
 }
