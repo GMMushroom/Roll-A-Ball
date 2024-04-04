@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
 
         //Camera Controls
-        if(cameraController.cameraStyle==CameraStyle.Free)
+        if(cameraController.cameraStyle == CameraStyle.Free)
         {
             //Roates the player to the drection of the camera
             transform.eulerAngles = Camera.main.transform.eulerAngles;
