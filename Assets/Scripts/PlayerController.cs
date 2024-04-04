@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private Timer timer;
     private bool gameOver = false;
 
+    //Controllers
+    CameraController cameraController;
+
     [Header("UI")]
     public TMP_Text pickUpText;
     public TMP_Text timerText;
@@ -34,11 +37,18 @@ public class PlayerController : MonoBehaviour
         displayTimer.SetActive(true);
         winPanel.SetActive(false);
 
+        //Get RigidBody
         rb = GetComponent<Rigidbody>();
+
+        //Get Controllers
+        cameraController = FindObjectOfType<CameraController>();
+
         //Get the number of pickups in our scene
         maxPickUpCount = GameObject.FindGameObjectsWithTag("Pick Up").Length;
+
         //Set Pick Up Count
         CheckPickUps();
+
         //Get the timer object and start the timer
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
@@ -62,6 +72,15 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
         rb.AddForce(movement * speed);
+
+        //Camera Controls
+        if(cameraController.cameraStyle==CameraStyle.Free)
+        {
+            //Roates the player to the drection of the camera
+            transform.eulerAngles = Camera.main.transform.eulerAngles;
+            //Translates the input vectors into coordinates
+            movement = transform.TransformDirection(movement);
+        }
     }
 
     //Interacting with Pickups
