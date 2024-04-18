@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     public static float currentPickUpCount = 0f;
     public static float maxPickUpCount = 0f;
+    private GameObject resetPoint;
+    private bool resetting = false;
+    private Color originalColor;
     private Timer timer;
     private bool gameOver = false;
 
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public GameObject winPanel;
     public GameObject displayTimer;
     public GameObject inGamePanel;
+    public GameObject pausePanel;
 
 
     // Start is called before the first frame update
@@ -35,6 +39,7 @@ public class PlayerController : MonoBehaviour
         //Turn on our In-game Panel & turn off Win Panel
         inGamePanel.SetActive(true);
         displayTimer.SetActive(true);
+        pausePanel.SetActive(false);
         winPanel.SetActive(false);
 
         //Get RigidBody
@@ -52,6 +57,10 @@ public class PlayerController : MonoBehaviour
         //Get the timer object and start the timer
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
+
+        //Get Reset Point
+        resetPoint = GameObject.Find("Reset Point");
+        originalColor = GetComponent<Renderer>().material.color;
     }
 
     //Display time during gameplay
@@ -66,21 +75,25 @@ public class PlayerController : MonoBehaviour
         if (gameOver == true)
             return;
 
+        if (resetting)
+            return;
+
         //Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-        rb.AddForce(movement * speed);
 
         //Camera Controls
-        if(cameraController.cameraStyle == CameraStyle.Free)
+        if (cameraController.cameraStyle == CameraStyle.Free)
         {
-            //Roates the player to the drection of the camera
+            //Rotates the player to the direction of the camera
             transform.eulerAngles = Camera.main.transform.eulerAngles;
             //Translates the input vectors into coordinates
             movement = transform.TransformDirection(movement);
         }
+
+        rb.AddForce(movement * speed);
     }
 
     //Interacting with Pickups
@@ -103,6 +116,14 @@ public class PlayerController : MonoBehaviour
         if (currentPickUpCount == maxPickUpCount)
         {
             winGame();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            StartCoroutine(ResetPlayer());
         }
     }
 
@@ -132,6 +153,26 @@ public class PlayerController : MonoBehaviour
         /*rb.velocity = Vector3.zero;
         rb.angularDrag = 0;*/
         rb.isKinematic = true;
+    }
+
+    public IEnumerator ResetPlayer()
+    {
+        resetting = true;
+        GetComponent<Renderer>().material.color = Color.black;
+        rb.velocity = Vector3.zero;
+        Vector3 startPos = transform.position;
+        float resetSpeed = 2f;
+        var i = 0.0f;
+        var rate = 1.0f / resetSpeed;
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * rate;
+            transform.position = Vector3.Lerp(startPos, resetPoint.transform.position, i);
+            yield return null;
+        }
+
+        GetComponent<Renderer>().material.color = originalColor;
+        resetting = false;
     }
 
     public void RestartGame()

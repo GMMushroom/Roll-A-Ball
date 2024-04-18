@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1742927878715402308, guid: 5e2af5e2f0f570142802fff35b689cbe, type: 3}
       propertyPath: m_Name
-      value: Floor_LP (8) Variant
+      value: Floor_LP_Slanted
       objectReference: {fileID: 0}
     - target: {fileID: 3912971884765016771, guid: 5e2af5e2f0f570142802fff35b689cbe, type: 3}
       propertyPath: m_LocalScale.z

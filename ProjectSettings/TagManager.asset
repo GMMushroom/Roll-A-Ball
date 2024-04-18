@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Pick Up
   - BGM
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
