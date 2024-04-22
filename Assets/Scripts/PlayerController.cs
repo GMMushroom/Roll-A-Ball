@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
     public static float maxPickUpCount = 0f;
     private GameObject resetPoint;
     private bool resetting = false;
+    private bool grounded = true;
     private Color originalColor;
     private Timer timer;
     private bool gameOver = false;
 
     //Controllers
     CameraController cameraController;
+    SoundController soundController;
 
     [Header("UI")]
     public TMP_Text pickUpText;
@@ -58,6 +60,9 @@ public class PlayerController : MonoBehaviour
         timer = FindObjectOfType<Timer>();
         timer.StartTimer();
 
+        //Find soundController
+        soundController = FindObjectOfType<SoundController>();
+
         //Get Reset Point
         resetPoint = GameObject.Find("Reset Point");
         originalColor = GetComponent<Renderer>().material.color;
@@ -78,22 +83,36 @@ public class PlayerController : MonoBehaviour
         if (resetting)
             return;
 
-        //Movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        if (grounded)
+        { //Movement
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+            Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 
-        //Camera Controls
-        if (cameraController.cameraStyle == CameraStyle.Free)
-        {
-            //Rotates the player to the direction of the camera
-            transform.eulerAngles = Camera.main.transform.eulerAngles;
-            //Translates the input vectors into coordinates
-            movement = transform.TransformDirection(movement);
+            //Camera Controls
+            if (cameraController.cameraStyle == CameraStyle.Free)
+            {
+                //Rotates the player to the direction of the camera
+                transform.eulerAngles = Camera.main.transform.eulerAngles;
+                //Translates the input vectors into coordinates
+                movement = transform.TransformDirection(movement);
+            }
+
+            rb.AddForce(movement * speed);
         }
+    }
 
-        rb.AddForce(movement * speed);
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            grounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            grounded = false;
     }
 
     //Interacting with Pickups
@@ -107,6 +126,8 @@ public class PlayerController : MonoBehaviour
             currentPickUpCount++;
             //Run the CheckPickUps() function
             CheckPickUps();
+            //Play pickupSound
+            soundController.PlayPickupSound();
         }
     }
 
@@ -119,11 +140,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Respawn player or play collision sound
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Respawn"))
         {
             StartCoroutine(ResetPlayer());
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            soundController.PlayCollisionSound(collision.gameObject);
         }
     }
 
@@ -148,6 +175,9 @@ public class PlayerController : MonoBehaviour
 
         //Display our time to the win time text
         winTimeText.text = "Your time was: " + timer.GetTime().ToString("F2");
+
+        //Play winSound
+        soundController.PlayWinSound();
 
         //Stop the player from moving
         /*rb.velocity = Vector3.zero;
