@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set timeScale for Pause script
+        Time.timeScale = 1;
+
         //Reset Pickup count
         currentPickUpCount = 0f;
         maxPickUpCount = 1f;
@@ -203,15 +206,5 @@ public class PlayerController : MonoBehaviour
 
         GetComponent<Renderer>().material.color = originalColor;
         resetting = false;
-    }
-
-    public void RestartGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
     }
 }
