@@ -14700,6 +14700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2612431684205700643, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 4871743540129351060, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14780,50 +14784,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6431584171200604632, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6431584171200604632, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1583296909677642087}
-    - target: {fileID: 6431584171200604632, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReloadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6431584171200604632, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049560900259033123, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1583296909677642087}
-    - target: {fileID: 9049560900259033123, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 9049560900259033123, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SceneController, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
---- !u!114 &1583296909677642087 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -3841792582364678637, guid: d3d1b1e2a028b544b9979bff99ca5552, type: 3}
-  m_PrefabInstance: {fileID: 1583296909677642086}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902f39418e43a444f8bf2b537bb0a3b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2171346119017796432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15119,14 +15084,14 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
+  - {fileID: 208379868}
   - {fileID: 568152369}
-  - {fileID: 347291761365213786}
   - {fileID: 1000021233}
+  - {fileID: 347291761365213786}
   - {fileID: 6741283186141777783}
   - {fileID: 1583296909677642086}
   - {fileID: 1836046939}
   - {fileID: 210012233}
-  - {fileID: 208379868}
-  - {fileID: 871362796}
   - {fileID: 1539961020}
+  - {fileID: 871362796}
   - {fileID: 417504902}

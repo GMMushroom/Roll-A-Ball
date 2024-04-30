@@ -8,7 +8,7 @@ public class SceneController : MonoBehaviour
     //Will change our scene to the string passed in
     public void ChangeScene(string _screenName)
     {
-        SceneManager.LoadScene( _screenName );
+        SceneManager.LoadScene( _screenName);
     }
 
     //Reloads the current scene we are in
