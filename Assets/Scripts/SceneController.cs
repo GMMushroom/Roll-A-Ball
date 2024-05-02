@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    PlayerController playerController;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     //Will change our scene to the string passed in
     public void ChangeScene(string _screenName)
     {
@@ -33,5 +41,10 @@ public class SceneController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ResetPlayer()
+    {
+        StartCoroutine(playerController.ResetPlayer());
     }
 }
